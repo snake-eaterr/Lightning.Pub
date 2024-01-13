@@ -37,6 +37,11 @@ export default class {
         return executedMigrations
     }
 
+    async Disconnect() {
+        const dataSource = this.DB as DataSource;
+        await dataSource.destroy();
+    }
+
     StartTransaction(exec: TX) {
         if (!this.pendingTx) {
             return this.doTransaction(exec)

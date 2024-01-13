@@ -33,6 +33,9 @@ export const getLogger = (params: LoggerParams): PubLogger => {
     }
 
     return (...message) => {
+        if (process.env.NODE_ENV === "test") {
+            return;
+        }
         const now = new Date()
         const timestamp = `${now.getFullYear()}-${z(now.getMonth() + 1)}-${z(now.getDate())} ${z(now.getHours())}:${z(now.getMinutes())}:${z(now.getSeconds())}`
         const toLog = [timestamp]

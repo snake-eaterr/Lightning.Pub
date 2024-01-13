@@ -39,7 +39,7 @@ export default async (settings: DbSettings, migrations: Function[]): Promise<{ s
         // logging: true,
         entities: [User, UserReceivingInvoice, UserReceivingAddress, AddressReceivingTransaction, UserInvoicePayment, UserTransactionPayment,
             UserBasicAuth, UserEphemeralKey, Product, UserToUserPayment, Application, ApplicationUser, UserToUserPayment, RoutingEvent, BalanceEvent, ChannelBalanceEvent],
-        //synchronize: true,
+        synchronize: process.env.NODE_ENV === "test" ? true : false,
         migrations
     }).initialize()
     const log = getLogger({})
