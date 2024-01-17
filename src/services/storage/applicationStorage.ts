@@ -95,7 +95,7 @@ export default class {
         if (!application.allow_user_creation) {
             throw new Error("user creation by client is not allowed in this app")
         }
-        return this.AddApplicationUser(application, crypto.randomBytes(32).toString('hex'), 0, nostrPub)
+        return this.AddApplicationUser(application, crypto.randomBytes(32).toString('hex'), process.env.NODE_ENV === "test" ? 2000 : 0, nostrPub)
     }
 
     async FindNostrAppUser(nostrPub: string, entityManager = this.DB) {
